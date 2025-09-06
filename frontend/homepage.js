@@ -26,12 +26,12 @@
         
         // Simulate login functionality
         document.querySelector('.btn-outline').addEventListener('click', function() {
-            alert('Redirecting to login page...');
+            console.log('Redirecting to login page...');
         });
         
         // Simulate signup functionality
         document.querySelector('.btn-primary').addEventListener('click', function() {
-            alert('Redirecting to signup page...');
+            console.log('Redirecting to signup page...');
         });
         
         // Add to cart functionality
