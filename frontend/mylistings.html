@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Listings</title>
+    <link rel="stylesheet" href="mylistings.css">
+    
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <img src="images\IMG_20250906_114058.png" width="150px" >
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="homepage.html">Products</a></li>
+                    <li><a href="homepage.html">Categories</a></li>
+                    
+                    <li><a href="profiledashboard.html">Profile</a></li>
+                </ul>
+            </nav>
+           
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">My Listings</h1>
+            <a href="#" class="add-new-btn">
+                <i class="fas fa-plus"></i> Add new
+            </a>
+        </div>
+        
+        <!-- Controls Section -->
+        <div class="controls">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+            
+            <div class="filter-controls">
+                <div class="control-btn">
+                    <i class="fas fa-sort"></i>
+                    <span>Sort</span>
+                </div>
+                <div class="control-btn">
+                    <i class="fas fa-filter"></i>
+                    <span>Filter</span>
+                </div>
+                <div class="control-btn">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Group by</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Listings Table -->
+        <div class="listings-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name of product</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Seller</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Headphones" class="product-image">
+                                <span class="product-name">Wireless Headphones</span>
+                            </div>
+                        </td>
+                        <td class="price">$89.99</td>
+                        <td><span class="category">Electronics</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>John Doe</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Smart Watch" class="product-image">
+                                <span class="product-name">Smart Watch</span>
+                            </div>
+                        </td>
+                        <td class="price">$129.99</td>
+                        <td><span class="category">Electronics</span></td>
+                        <td><span class="status status-pending">Pending</span></td>
+                        <td>John Doe</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Running Shoes" class="product-image">
+                                <span class="product-name">Running Shoes</span>
+                            </div>
+                        </td>
+                        <td class="price">$79.99</td>
+                        <td><span class="category">Clothing</span></td>
+                        <td><span class="status status-sold">Sold</span></td>
+                        <td>John Doe</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Backpack" class="product-image">
+                                <span class="product-name">Travel Backpack</span>
+                            </div>
+                        </td>
+                        <td class="price">$49.99</td>
+                        <td><span class="category">Accessories</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>John Doe</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Earbuds" class="product-image">
+                                <span class="product-name">Wireless Earbuds</span>
+                            </div>
+                        </td>
+                        <td class="price">$59.99</td>
+                        <td><span class="category">Electronics</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>John Doe</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Empty State (Hidden by default) -->
+        <div class="empty-state" style="display: none;">
+            <div class="empty-icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+            <h3>No Listings Yet</h3>
+            <p>You haven't created any listings yet. Start by adding your first product to sell.</p>
+            <a href="#" class="add-new-btn">
+                <i class="fas fa-plus"></i> Add new listing
+            </a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>We provide a platform for users to buy and sell products with ease.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">My Listings</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Street, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@myshop.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MyShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script src="mylistings.js"></script>    
+
+   
+</body>
+</html>
