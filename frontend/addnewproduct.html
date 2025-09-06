@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(to right, #4a6cf7, #6a82fb);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-weight: 600;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group label i {
+            margin-right: 10px;
+            color: #4a6cf7;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4a6cf7;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            transform: scale(1.2);
+        }
+        
+        .dimensions-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        /* Image Upload */
+        .image-upload {
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .image-upload:hover {
+            border-color: #4a6cf7;
+            background-color: #f8faff;
+        }
+        
+        .upload-icon {
+            font-size: 42px;
+            color: #4a6cf7;
+            margin-bottom: 15px;
+        }
+        
+        .image-preview {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .image-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Button Styles */
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #4a6cf7, #6a82fb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #405fd6, #5c75e0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 108, 247, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 14px;
+            background-color: #f7fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .footer a {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Required field indicator */
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-plus-circle"></i> Add a New Product</h1>
+            <p>Fill in all the required details to list your product</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="image-upload" id="imageUpload">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Upload Product Image</h3>
+                <p>Click or drag an image to this area</p>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*">
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Preview">
+                </div>
+            </div>
+            
+            <form id="productForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productTitle" class="required"><i class="fas fa-heading"></i> Product Title</label>
+                        <input type="text" id="productTitle" name="productTitle" required placeholder="Enter product name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productCategory" class="required"><i class="fas fa-tag"></i> Product Category</label>
+                        <select id="productCategory" name="productCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing & Accessories</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="sports">Sports & Outdoors</option>
+                            <option value="vehicles">Vehicles & Parts</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="productDescription" class="required"><i class="fas fa-align-left"></i> Product Description</label>
+                        <textarea id="productDescription" name="productDescription" required placeholder="Describe your product in detail"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price" class="required"><i class="fas fa-dollar-sign"></i> Price</label>
+                        <input type="number" id="price" name="price" required placeholder="0.00" min="0" step="0.01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity" class="required"><i class="fas fa-cubes"></i> Quantity</label>
+                        <input type="number" id="quantity" name="quantity" required placeholder="1" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="condition" class="required"><i class="fas fa-certificate"></i> Condition</label>
+                        <select id="condition" name="condition" required>
+                            <option value="">Select condition</option>
+                            <option value="new">New</option>
+                            <option value="like-new">Like New</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="manufactureYear"><i class="fas fa-calendar-alt"></i> Year of Manufacture</label>
+                        <input type="number" id="manufactureYear" name="manufactureYear" placeholder="YYYY" min="1900" max="2023">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="brand"><i class="fas fa-copyright"></i> Brand</label>
+                        <input type="text" id="brand" name="brand" placeholder="Product brand">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="model"><i class="fas fa-microchip"></i> Model</label>
+                        <input type="text" id="model" name="model" placeholder="Product model">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="dimensions"><i class="fas fa-ruler-combined"></i> Dimensions</label>
+                        <div class="dimensions-group">
+                            <div>
+                                <input type="number" id="length" name="length" placeholder="Length" min="0" step="0.01">
+                                <label for="length" class="small-label">Length</label>
+                            </div>
+                            <div>
+                                <input type="number" id="width" name="width" placeholder="Width" min="0" step="0.01">
+                                <label for="width" class="small-label">Width</label>
+                            </div>
+                            <div>
+                                <input type="number" id="height" name="height" placeholder="Height" min="0" step="0.01">
+                                <label for="height" class="small-label">Height</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="weight"><i class="fas fa-weight-hanging"></i> Weight</label>
+                        <input type="number" id="weight" name="weight" placeholder="0.00" min="0" step="0.01">
+                        <select id="weightUnit" name="weightUnit" style="margin-top: 8px;">
+                            <option value="kg">kg</option>
+                            <option value="g">g</option>
+                            <option value="lb">lb</option>
+                            <option value="oz">oz</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="material"><i class="fas fa-cube"></i> Material</label>
+                        <input type="text" id="material" name="material" placeholder="Primary material">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color"><i class="fas fa-palette"></i> Color</label>
+                        <input type="text" id="color" name="color" placeholder="Product color">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="originalPackaging" name="originalPackaging">
+                            <label for="originalPackaging"><i class="fas fa-box-open"></i> Original Packaging</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="manualIncluded" name="manualIncluded">
+                            <label for="manualIncluded"><i class="fas fa-book"></i> Manual/Instructions Included</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="workingCondition"><i class="fas fa-tools"></i> Working Condition Description</label>
+                        <textarea id="workingCondition" name="workingCondition" placeholder="Describe the working condition of the product"></textarea>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus"></i> Add Item
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Product Listing Service | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Image upload functionality
+        const imageUpload = document.getElementById('imageUpload');
+        const fileInput = document.getElementById('fileInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImage = imagePreview.querySelector('img');
+        
+        imageUpload.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        imageUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageUpload.style.borderColor = '#4a6cf7';
+            imageUpload.style.backgroundColor = '#f8faff';
+        });
+        
+        imageUpload.addEventListener('dragleave', () => {
+            imageUpload.style.borderColor = '#cbd5e0';
+            imageUpload.style.backgroundColor = 'transparent';
+        });
+        
+        imageUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageUpload.style.borderColor = '#cbd5e0';
+            imageUpload.style.backgroundColor = 'transparent';
+            
+            const file = e.dataTransfer.files[0];
+            handleImage(file);
+        });
+        
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            handleImage(file);
+        });
+        
+        function handleImage(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Form validation
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const productTitle = document.getElementById('productTitle').value;
+            const productCategory = document.getElementById('productCategory').value;
+            const productDescription = document.getElementById('productDescription').value;
+            const price = document.getElementById('price').value;
+            const quantity = document.getElementById('quantity').value;
+            const condition = document.getElementById('condition').value;
+            
+            if (!productTitle || !productCategory || !productDescription || !price || !quantity || !condition) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // If validation passes
+            alert('Product added successfully!');
+            this.reset();
+            imagePreview.style.display = 'none';
+        });
+        
+        // Add unit labels to dimension fields
+        const lengthInput = document.getElementById('length');
+        const widthInput = document.getElementById('width');
+        const heightInput = document.getElementById('height');
+        
+        [lengthInput, widthInput, heightInput].forEach(input => {
+            input.addEventListener('focus', function() {
+                this.placeholder = '0.00 cm';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.placeholder = this.id.charAt(0).toUpperCase() + this.id.slice(1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

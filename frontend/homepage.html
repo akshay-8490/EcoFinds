@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="homepage.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="search-bar">
+                <input type="text" placeholder="Search products by keyword..." id="searchInput">
+                <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <img src="images\IMG_20250906_114058.png" width="150px" height="150px">
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <a class="btn btn-outline" href="login.html">Login</a>
+                <a class="btn btn-primary" href="signup.html">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Amazing Products</h1>
+            <p>Browse through our extensive collection of high-quality items tailored to your needs</p>
+        </div>
+    </section>
+    
+    <!-- Search and Filter Section -->
+    <div class="container">
+        <div class="search-section">
+            
+            
+            <div class="filter-options">
+                <div class="filter-group">
+                    <select id="sortSelect">
+                        <option value="">Sort by</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                        <option value="name-desc">Name: Z to A</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <select id="filterSelect">
+                        <option value="">Filter by category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="sports">Sports & Outdoors</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <select id="groupSelect">
+                        <option value="">Group by</option>
+                        <option value="category">Category</option>
+                        <option value="price-range">Price Range</option>
+                        <option value="brand">Brand</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            
+            <div class="category-grid">
+                <!-- Category 1 -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3>Learning Page</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Logo</li>
+                            <li><i class="fas fa-check-circle"></i> Search functionality</li>
+                            <li><i class="fas fa-check-circle"></i> Sort options</li>
+                            <li><i class="fas fa-check-circle"></i> Filter system</li>
+                            <li><i class="fas fa-check-circle"></i> Groupby features</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3>Computer Chinchilla</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Chat functionality</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time messaging</li>
+                            <li><i class="fas fa-check-circle"></i> Group chats</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3>Waterful Oyster</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Automatic processes</li>
+                            <li><i class="fas fa-check-circle"></i> Builder tools</li>
+                            <li><i class="fas fa-check-circle"></i> Customization options</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3>Twistworthy Alligator</h3>
+                    </div>
+                    <div class="category-body">
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Vigilant monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced analytics</li>
+                            <li><i class="fas fa-check-circle"></i> Timely notifications</li>
+                            <li><i class="fas fa-check-circle"></i> All categories access</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Points to Remember Section -->
+    <div class="container">
+        <div class="points-section">
+            <h2 class="section-title">POINTS TO REMEMBER</h2>
+            
+            <div class="points-grid">
+                <div class="point-card">
+                    <h4>Responsive Layout</h4>
+                    <p>Works seamlessly on all device sizes from mobile to desktop</p>
+                </div>
+                
+                <div class="point-card">
+                    <h4>Search Functionality</h4>
+                    <p>Search bar to filter products by keyword with real-time results</p>
+                </div>
+                
+                <div class="point-card">
+                    <h4>Category Sections</h4>
+                    <p>Organized browsing for different product types</p>
+                </div>
+                
+                <div class="point-card">
+                    <h4>User Navigation</h4>
+                    <p>Easy access to login, signup, and user profile when logged in</p>
+                </div>
+                
+                <div class="point-card">
+                    <h4>No Dead Links</h4>
+                    <p>All buttons and navigation elements work as expected</p>
+                </div>
+                
+                <div class="point-card">
+                    <h4>Real-time Updates</h4>
+                    <p>Counters and results update in real-time as users interact</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>We provide high-quality products with excellent customer service and support.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Street, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@originalcrow.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Original Crow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="homepage.js"></script>
+</body>
+</html>

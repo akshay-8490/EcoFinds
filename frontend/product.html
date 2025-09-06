@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page - Thoughtful Kangaroo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #4a6cf7, #6a82fb);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            font-size: 28px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-left: 15px;
+            font-style: italic;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: #4a6cf7;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #4a6cf7;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        .breadcrumb a {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Product Section */
+        .product-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 900px) {
+            .product-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Product Images */
+        .product-images {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .image-thumbnails {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            border-top: 1px solid #eee;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #eee;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thumbnail.active {
+            border-color: #4a6cf7;
+        }
+        
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Product Details */
+        .product-details {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .product-subtitle {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a6cf7;
+            margin-bottom: 20px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stars {
+            color: #ffc107;
+        }
+        
+        .rating-count {
+            color: #6c757d;
+        }
+        
+        .product-description {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .product-features {
+            margin-bottom: 25px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list i {
+            margin-right: 10px;
+            color: #4a6cf7;
+        }
+        
+        /* Product Actions */
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .quantity button {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .quantity input {
+            width: 50px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .add-to-cart {
+            flex: 1;
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #405fd6;
+        }
+        
+        .buy-now {
+            flex: 1;
+            background: #2d3748;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .buy-now:hover {
+            background: #1a202c;
+        }
+        
+        /* Product Info Tabs */
+        .product-info {
+            margin: 40px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6c757d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #4a6cf7;
+            border-bottom-color: #4a6cf7;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .specs-table td {
+            padding: 12px 15px;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 500;
+            width: 30%;
+        }
+        
+        /* Reviews Section */
+        .review {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .review:last-child {
+            border-bottom: none;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .review-author {
+            font-weight: 500;
+        }
+        
+        .review-date {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        /* Related Products */
+        .related-products {
+            margin: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #2d3748;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #4a6cf7;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .product-card-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-card-content {
+            padding: 20px;
+        }
+        
+        .product-card-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .product-card-price {
+            font-weight: 700;
+            color: #4a6cf7;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .user-actions {
+                margin-top: 15px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>Thoughtful Kangaroo</span>
+                <span class="tagline">Meets the Manifesto Small</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="btn btn-outline"><i class="fas fa-user"></i> Login</button>
+                <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Cart (0)</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Home</a> > <a href="#">Products</a> > <a href="#">Electronics</a> > Thoughtful Kangaroo
+        </div>
+    </div>
+    
+    <!-- Product Section -->
+    <div class="container">
+        <div class="product-section">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Thoughtful Kangaroo Product" id="mainImage">
+                </div>
+                <div class="image-thumbnails">
+                    <div class="thumbnail active" data-image="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Thumbnail 1">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1495856458515-0637185db551?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1495856458515-0637185db551?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Thumbnail 2">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Thumbnail 3">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Thumbnail 4">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="product-details">
+                <h1 class="product-title">Thoughtful Kangaroo</h1>
+                <h2 class="product-subtitle">Premium Quality Product</h2>
+                
+                <div class="product-price">$129.99</div>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="rating-count">(42 reviews)</div>
+                </div>
+                
+                <div class="product-description">
+                    <p>The Thoughtful Kangaroo is a premium product designed for those who appreciate quality and functionality. It combines elegant design with practical features to meet all your needs.</p>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Key Features</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> High-quality materials</li>
+                        <li><i class="fas fa-check"></i> Elegant design</li>
+                        <li><i class="fas fa-check"></i> Easy to use</li>
+                        <li><i class="fas fa-check"></i> Durable construction</li>
+                        <li><i class="fas fa-check"></i> Environmentally friendly</li>
+                    </ul>
+                </div>
+                
+                <div class="product-actions">
+                    <div class="quantity">
+                        <button id="decreaseQty">-</button>
+                        <input type="text" value="1" id="quantityInput">
+                        <button id="increaseQty">+</button>
+                    </div>
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> Buy Now</button>
+                </div>
+                
+                <div class="product-meta">
+                    <p><i class="fas fa-box"></i> <strong>SKU:</strong> TK-2023</p>
+                    <p><i class="fas fa-layer-group"></i> <strong>Category:</strong> Electronics</p>
+                    <p><i class="fas fa-tag"></i> <strong>Tags:</strong> Premium, Innovative, Quality</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Info Tabs -->
+        <div class="product-info">
+            <div class="tabs">
+                <div class="tab active" data-tab="description">Description</div>
+                <div class="tab" data-tab="specifications">Specifications</div>
+                <div class="tab" data-tab="reviews">Reviews (42)</div>
+            </div>
+            
+            <div class="tab-content active" id="description">
+                <h3>Product Description</h3>
+                <p>The Thoughtful Kangaroo is designed with care and attention to detail. It contains all the required fields and features that make it stand out from the competition.</p>
+                
+                <p>With its innovative design and high-quality materials, this product is built to last. Whether you're using it for personal or professional purposes, the Thoughtful Kangaroo delivers exceptional performance.</p>
+                
+                <p>Key benefits include:</p>
+                <ul>
+                    <li>Enhanced durability for long-term use</li>
+                    <li>User-friendly interface for easy operation</li>
+                    <li>Eco-friendly materials that reduce environmental impact</li>
+                    <li>Versatile functionality for various applications</li>
+                </ul>
+            </div>
+            
+            <div class="tab-content" id="specifications">
+                <h3>Technical Specifications</h3>
+                <table class="specs-table">
+                    <tr>
+                        <td>Model</td>
+                        <td>Thoughtful Kangaroo Pro</td>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>10.2 x 6.5 x 2.3 inches</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>1.2 lbs</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>Premium aluminum alloy</td>
+                    </tr>
+                    <tr>
+                        <td>Color</td>
+                        <td>Space Gray, Silver, Gold</td>
+                    </tr>
+                    <tr>
+                        <td>Warranty</td>
+                        <td>2 years limited warranty</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="reviews">
+                <h3>Customer Reviews</h3>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <span class="review-author">Enchanted Goshawk</span>
+                        <span class="review-date">September 5, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>This product exceeded my expectations! The quality is outstanding and it works perfectly. I would highly recommend it to anyone looking for a reliable solution.</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <span class="review-author">Wise Woodpecker</span>
+                        <span class="review-date">August 28, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Very impressed with the build quality and attention to detail. The Thoughtful Kangaroo is definitely worth the investment.</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <span class="review-author">Amused Badger</span>
+                        <span class="review-date">August 15, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>I've been using this product for a month now and it's been fantastic. The design is sleek and it's very user-friendly.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Products -->
+        <div class="related-products">
+            <h2 class="section-title">Related Products</h2>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Adorable Jay">
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Adorable Jay</h3>
+                        <div class="product-card-price">$89.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Energetic Rabbit">
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Energetic Rabbit</h3>
+                        <div class="product-card-price">$79.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Ambitious Bison">
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Ambitious Bison</h3>
+                        <div class="product-card-price">$149.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Blissful Porcupine">
+                    </div>
+                    <div class="product-card-content">
+                        <h3 class="product-card-title">Blissful Porcupine</h3>
+                        <div class="product-card-price">$59.99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>We provide high-quality products with excellent customer service and support.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Street, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@thoughtfulkangaroo.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Thoughtful Kangaroo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Image thumbnail functionality
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('mainImage').src = this.getAttribute('data-image');
+            });
+        });
+        
+        // Quantity functionality
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantityInput');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantityInput');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+        
+        // Add to cart functionality
+        document.querySelector('.add-to-cart').addEventListener('click', function() {
+            const quantity = document.getElementById('quantityInput').value;
+            alert(`Added ${quantity} Thoughtful Kangaroo(s) to your cart!`);
+        });
+        
+        // Buy now functionality
+        document.querySelector('.buy-now').addEventListener('click', function() {
+            const quantity = document.getElementById('quantityInput').value;
+            alert(`Purchasing ${quantity} Thoughtful Kangaroo(s)! Redirecting to checkout...`);
+        });
+    </script>
+</body>
+</html>
