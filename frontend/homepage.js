@@ -48,4 +48,39 @@ document.querySelectorAll('.view-btn1, .view-btn2, .view-btn3, .view-btn4').forE
             alert('Redirecting to signup page...');
         });
         
+<<<<<<< HEAD
        
+=======
+        // Add to cart functionality
+        document.querySelectorAll('.cart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`Added ${productName} to cart!`);
+            });
+        });
+    function showResults(query) {
+      resultsDiv.innerHTML = ''; // clear old results
+      if (query.length === 0) return;
+
+      const filtered = data.filter(item =>
+        item.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
+        return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('result-item');
+        div.textContent = item;
+        resultsDiv.appendChild(div);
+      });
+    }
+
+    // Event listener for typing
+    searchInput.addEventListener('input', (e) => {
+      showResults(e.target.value);
+    });
+>>>>>>> df8ab42999b8cc381a5afb7eb923166684444543
