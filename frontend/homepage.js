@@ -1,4 +1,18 @@
-        // Smooth scrolling for navigation links
+document.querySelectorAll('.view-btn1, .view-btn2, .view-btn3, .view-btn4').forEach(button => {
+    button.addEventListener('click', function() {
+        if (this.classList.contains('view-btn1')) {
+            window.location.href = 'img1.html';
+        } else if (this.classList.contains('view-btn2')) {
+            window.location.href = 'img2.html';
+        } else if (this.classList.contains('view-btn3')) {
+            window.location.href = 'img3.html';
+        } else if (this.classList.contains('view-btn4')) {
+            window.location.href = 'img4.html';
+        }
+    });
+});
+
+// Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -34,35 +48,4 @@
             console.log('Redirecting to signup page...');
         });
         
-        // Add to cart functionality
-        document.querySelectorAll('.cart-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const productName = this.closest('.product-card').querySelector('.product-title').textContent;
-                alert(`Added ${productName} to cart!`);
-            });
-        });
-    function showResults(query) {
-      resultsDiv.innerHTML = ''; // clear old results
-      if (query.length === 0) return;
-
-      const filtered = data.filter(item =>
-        item.toLowerCase().includes(query.toLowerCase())
-      );
-
-      if (filtered.length === 0) {
-        resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
-        return;
-      }
-
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.classList.add('result-item');
-        div.textContent = item;
-        resultsDiv.appendChild(div);
-      });
-    }
-
-    // Event listener for typing
-    searchInput.addEventListener('input', (e) => {
-      showResults(e.target.value);
-    });
+       

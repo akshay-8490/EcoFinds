@@ -6,7 +6,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #7ae9ff 0%, #2575fe 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,7 +24,7 @@
         }
         
         .header {
-            background: linear-gradient(to right, #4a6cf7, #6a82fb);
+            background: linear-gradient(to right, #000000, #6a82fb);
             color: white;
             padding: 25px 30px;
             text-align: center;
