@@ -41,3 +41,28 @@
                 alert(`Added ${productName} to cart!`);
             });
         });
+    function showResults(query) {
+      resultsDiv.innerHTML = ''; // clear old results
+      if (query.length === 0) return;
+
+      const filtered = data.filter(item =>
+        item.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = "<div class='result-item'>No results found</div>";
+        return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('result-item');
+        div.textContent = item;
+        resultsDiv.appendChild(div);
+      });
+    }
+
+    // Event listener for typing
+    searchInput.addEventListener('input', (e) => {
+      showResults(e.target.value);
+    });

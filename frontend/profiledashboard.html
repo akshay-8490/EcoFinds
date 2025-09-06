@@ -3,417 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(to right, #4a6cf7, #6a82fb);
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: 700;
-        }
-        
-        .logo i {
-            font-size: 28px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .user-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .btn {
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-outline {
-            border: 1px solid white;
-            background: transparent;
-            color: white;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: #4a6cf7;
-        }
-        
-        /* Dashboard Layout */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        @media (max-width: 900px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            align-self: start;
-            position: sticky;
-            top: 100px;
-        }
-        
-        .profile-card {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #e2e8f0;
-            margin: 0 auto 15px;
-        }
-        
-        .change-photo {
-            display: block;
-            color: #4a6cf7;
-            text-decoration: none;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .change-photo:hover {
-            text-decoration: underline;
-        }
-        
-        .user-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #2d3748;
-        }
-        
-        .user-email {
-            color: #718096;
-            margin-bottom: 15px;
-        }
-        
-        .edit-profile {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #4a6cf7;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .edit-profile:hover {
-            background: #405fd6;
-        }
-        
-        .nav-menu {
-            list-style: none;
-        }
-        
-        .nav-item {
-            margin-bottom: 10px;
-        }
-        
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            color: #4a5568;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        
-        .nav-link i {
-            margin-right: 12px;
-            color: #718096;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            background: #f1f5f9;
-            color: #4a6cf7;
-        }
-        
-        .nav-link:hover i, .nav-link.active i {
-            color: #4a6cf7;
-        }
-        
-        /* Main Content */
-        .main-content {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .content-title {
-            font-size: 24px;
-            color: #2d3748;
-        }
-        
-        .sort-select {
-            padding: 10px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 14px;
-            background: white;
-        }
-        
-        /* User Info Section */
-        .info-section {
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            color: #2d3748;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f1f5f9;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .info-item {
-            padding: 15px;
-            background: #f8fafc;
-            border-radius: 8px;
-        }
-        
-        .info-label {
-            font-size: 14px;
-            color: #718096;
-            margin-bottom: 5px;
-        }
-        
-        .info-value {
-            font-size: 16px;
-            font-weight: 500;
-            color: #2d3748;
-        }
-        
-        /* Listings Section */
-        .listings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .listing-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .listing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .listing-image {
-            height: 180px;
-            overflow: hidden;
-        }
-        
-        .listing-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .listing-content {
-            padding: 15px;
-        }
-        
-        .listing-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2d3748;
-        }
-        
-        .listing-price {
-            font-weight: 700;
-            color: #4a6cf7;
-            margin-bottom: 12px;
-        }
-        
-        .listing-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #718096;
-            font-size: 14px;
-        }
-        
-        .no-items {
-            text-align: center;
-            padding: 40px;
-            color: #718096;
-            grid-column: 1 / -1;
-        }
-        
-        .no-items i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #cbd5e0;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-section a {
-            color: #cbd5e0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-section a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #4a5568;
-            color: #cbd5e0;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .content-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .sort-select {
-                width: 100%;
-            }
-        }
-    </style>
+    <title>Enhanced User Profile Dashboard</title>
+    <link rel="stylesheet" href="profiledashboard.css">
+   
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -421,22 +13,19 @@
         <div class="container header-content">
             <div class="logo">
                 <i class="fas fa-user-circle"></i>
-                <span>ProfileDashboard</span>
+                <img src="images\IMG_20250906_114058.png" width="150px" >
             </div>
             
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="homepage.html">Home</a></li>
+                    <li><a href="homepage.html">Products</a></li>
+                    <li><a href="homepage.html">Categories</a></li>
+                    
                 </ul>
             </nav>
             
-            <div class="user-actions">
-                <button class="btn btn-outline"><i class="fas fa-bell"></i></button>
-                <button class="btn btn-outline"><i class="fas fa-cog"></i></button>
-            </div>
+           
         </div>
     </header>
     
@@ -450,53 +39,36 @@
                     <a href="#" class="change-photo">Change Photo</a>
                     <h2 class="user-name">John Doe</h2>
                     <p class="user-email">john.doe@example.com</p>
-                    <a href="#" class="edit-profile"><i class="fas fa-edit"></i> Edit Profile</a>
+                    <button class="edit-profile" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
                 </div>
                 
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="#profile" class="nav-link active">
                             <i class="fas fa-user"></i>
                             <span>Profile Information</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="mylistings.html" class="nav-link">
                             <i class="fas fa-list"></i>
                             <span>My Listings</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="myorders.html" class="nav-link">
                             <i class="fas fa-shopping-bag"></i>
-                            <span>My Purchases</span>
+                            <span>My Orders</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-heart"></i>
-                            <span>Wishlist</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
             
             <!-- Main Content -->
             <div class="main-content">
                 <div class="content-header">
-                    <h1 class="content-title">My Profile</h1>
+                    <h1 class="content-title">My Profile Dashboard</h1>
                     <select class="sort-select">
                         <option>Sort by: Newest</option>
                         <option>Sort by: Oldest</option>
@@ -505,44 +77,83 @@
                     </select>
                 </div>
                 
+                <!-- Stats Section -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-1">
+                        <div class="stat-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Active Listings</div>
+                    </div>
+                    <div class="stat-card stat-2">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                    <div class="stat-card stat-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Wishlist Items</div>
+                    </div>
+                    <div class="stat-card stat-4">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+                
                 <!-- User Info Section -->
-                <div class="info-section">
-                    <h2 class="section-title">Personal Information</h2>
+                <div class="info-section" id="profileInfo">
+                    <h2 class="section-title"><i class="fas fa-user-circle"></i> Personal Information</h2>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">Full Name</div>
-                            <div class="info-value">John Doe</div>
+                            <input type="text" class="info-value" value="John Doe" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Email Address</div>
-                            <div class="info-value">john.doe@example.com</div>
+                            <input type="email" class="info-value" value="john.doe@example.com" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Phone Number</div>
-                            <div class="info-value">+1 (555) 123-4567</div>
+                            <input type="tel" class="info-value" value="+1 (555) 123-4567" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Location</div>
-                            <div class="info-value">New York, USA</div>
+                            <input type="text" class="info-value" value="New York, USA" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Member Since</div>
-                            <div class="info-value">January 2022</div>
+                            <input type="text" class="info-value" value="January 2022" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Status</div>
-                            <div class="info-value" style="color: #38a169;">Verified</div>
+                            <input type="text" class="info-value" value="Verified" readonly>
                         </div>
+                    </div>
+                    
+                    <!-- Action buttons (hidden by default) -->
+                    <div class="action-buttons" id="actionButtons" style="display: none;">
+                        <button class="save-btn" id="saveProfileBtn">Save Changes</button>
+                        <button class="cancel-btn" id="cancelEditBtn">Cancel</button>
                     </div>
                 </div>
                 
                 <!-- My Listings Section -->
                 <div class="info-section">
-                    <h2 class="section-title">My Recent Listings</h2>
+                    <h2 class="section-title"><i class="fas fa-list"></i> My Recent Listings</h2>
                     <div class="listings-grid">
                         <div class="listing-card">
                             <div class="listing-image">
                                 <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Product">
+                                <span class="listing-status">Active</span>
                             </div>
                             <div class="listing-content">
                                 <h3 class="listing-title">Wireless Headphones</h3>
@@ -551,12 +162,17 @@
                                     <span>2 days ago</span>
                                     <span>12 views</span>
                                 </div>
+                                <div class="listing-actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="listing-card">
                             <div class="listing-image">
                                 <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Product">
+                                <span class="listing-status">Active</span>
                             </div>
                             <div class="listing-content">
                                 <h3 class="listing-title">Smart Watch</h3>
@@ -565,12 +181,17 @@
                                     <span>1 week ago</span>
                                     <span>24 views</span>
                                 </div>
+                                <div class="listing-actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="listing-card">
                             <div class="listing-image">
                                 <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Product">
+                                <span class="listing-status">Active</span>
                             </div>
                             <div class="listing-content">
                                 <h3 class="listing-title">Bluetooth Earbuds</h3>
@@ -579,25 +200,34 @@
                                     <span>3 weeks ago</span>
                                     <span>18 views</span>
                                 </div>
+                                <div class="listing-actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- My Purchases Section -->
+                <!-- My Orders Section -->
                 <div class="info-section">
-                    <h2 class="section-title">Recent Purchases</h2>
+                    <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Recent Orders</h2>
                     <div class="listings-grid">
                         <div class="listing-card">
                             <div class="listing-image">
                                 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Product">
+                                <span class="listing-status" style="background: #38a169;">Delivered</span>
                             </div>
                             <div class="listing-content">
                                 <h3 class="listing-title">Running Shoes</h3>
                                 <div class="listing-price">$79.99</div>
                                 <div class="listing-meta">
-                                    <span>Purchased: 5 days ago</span>
-                                    <span>Delivered</span>
+                                    <span>Order #3245</span>
+                                    <span>5 days ago</span>
+                                </div>
+                                <div class="listing-actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-redo"></i> Buy Again</button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-comment"></i> Review</button>
                                 </div>
                             </div>
                         </div>
@@ -605,21 +235,26 @@
                         <div class="listing-card">
                             <div class="listing-image">
                                 <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Product">
+                                <span class="listing-status" style="background: #d69e2e;">Processing</span>
                             </div>
                             <div class="listing-content">
                                 <h3 class="listing-title">Backpack</h3>
                                 <div class="listing-price">$49.99</div>
                                 <div class="listing-meta">
-                                    <span>Purchased: 2 weeks ago</span>
-                                    <span>Delivered</span>
+                                    <span>Order #3246</span>
+                                    <span>2 days ago</span>
+                                </div>
+                                <div class="listing-actions">
+                                    <button class="action-btn edit-btn"><i class="fas fa-truck"></i> Track</button>
+                                    <button class="action-btn delete-btn"><i class="fas fa-times"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="no-items">
                             <i class="fas fa-shopping-bag"></i>
-                            <h3>No more recent purchases</h3>
-                            <p>Your purchase history will appear here</p>
+                            <h3>No more recent orders</h3>
+                            <p>Your order history will appear here</p>
                         </div>
                     </div>
                 </div>
@@ -642,8 +277,7 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Categories</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        
                     </ul>
                 </div>
                 
@@ -663,31 +297,8 @@
         </div>
     </footer>
 
-    <script>
-        // Navigation active state
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                
-                // In a real application, this would load the appropriate content
-                const sectionName = this.querySelector('span').textContent;
-                document.querySelector('.content-title').textContent = sectionName;
-            });
-        });
+    <script src="profiledashboard.js">
         
-        // Edit profile button
-        document.querySelector('.edit-profile').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Edit profile functionality would open here.');
-        });
-        
-        // Change photo link
-        document.querySelector('.change-photo').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Photo upload dialog would open here.');
-        });
     </script>
 </body>
 </html>
