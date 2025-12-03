@@ -26,7 +26,7 @@
                 </ul>
             </nav>
             
-            <div class="user-actions">
+            <!-- <div class="user-actions">
                 <div class="nav-search">
                     <input type="text" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
@@ -44,7 +44,28 @@
                     <img src="images\add-box-line.png" width="20px" >
                 </a>
                 
+            </div> -->
+            <div id="logged-out-actions" class="user-actions"> 
+            <div class="nav-search">
+                <input type="text" placeholder="Search...">
+                <button><i class="fas fa-search"></i></button>
             </div>
+            
+            <a class="btn btn-primary" href="signup.html" id="signup-btn" style="text-decoration: none;">Sign Up</a>
+            <a class="btn btn-outline" href="login.html" id="login-btn" style="text-decoration: none;">Login</a>
+        </div>
+        
+        <div id="logged-in-actions" class="user-actions" style="display: none;"> 
+            <a class="btn btn-outline" href="profiledashboard.html" id="profile-btn" style="text-decoration: none;">Profile</a>
+            
+            <a class="btn btn-outline" href="cart.html" id="cart-btn" style="text-decoration: none;">
+                <img src="images\shopping-cart-line (1).png" width="20px" >
+            </a>
+            <a class="btn btn-outline" href="sellerpage.html" id="add-btn" style="text-decoration: none;">
+                <img src="images\add-box-line.png" width="20px" >
+            </a>
+            <a class="btn btn-outline" href="#" id="logout-btn" style="text-decoration: none;">Logout</a>
+        </div>
         </div>
     </header>
     
