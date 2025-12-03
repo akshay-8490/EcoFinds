@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enhanced User Profile Dashboard</title>
     <link rel="stylesheet" href="profiledashboard.css">
-   
 </head>
 <body>
-    <!-- Header with Navigation -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -21,24 +19,22 @@
                     <li><a href="homepage.html">Home</a></li>
                     <li><a href="homepage.html">Products</a></li>
                     <li><a href="homepage.html">Categories</a></li>
-                    
                 </ul>
             </nav>
-            
-           
         </div>
     </header>
     
-    <!-- Dashboard Content -->
     <div class="container">
         <div class="dashboard">
-            <!-- Sidebar -->
             <div class="sidebar">
                 <div class="profile-card">
                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Profile Picture" class="profile-picture">
                     <a href="#" class="change-photo">Change Photo</a>
-                    <h2 class="user-name">Rana</h2>
-                    <p class="user-email">rana@gmail.com</p>
+                    
+                    <h2 class="user-name">Loading...</h2>
+                    
+                    <p class="user-email">loading@...</p>
+                    
                     <button class="edit-profile" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
                 </div>
                 
@@ -61,11 +57,9 @@
                             <span>My Orders</span>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
             
-            <!-- Main Content -->
             <div class="main-content">
                 <div class="content-header">
                     <h1 class="content-title">My Profile Dashboard</h1>
@@ -77,7 +71,6 @@
                     </select>
                 </div>
                 
-                <!-- Stats Section -->
                 <div class="stats-grid">
                     <div class="stat-card stat-1">
                         <div class="stat-icon">
@@ -109,17 +102,16 @@
                     </div>
                 </div>
                 
-                <!-- User Info Section -->
                 <div class="info-section" id="profileInfo">
                     <h2 class="section-title"><i class="fas fa-user-circle"></i> Personal Information</h2>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-label">Full Name</div>
-                            <input type="text" class="info-value" value="Rana" readonly>
+                            <input type="text" class="info-value user-fullname-input" value="" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Email Address</div>
-                            <input type="email" class="info-value" value="rana@gmail.com" readonly>
+                            <input type="email" class="info-value user-email-input" value="" readonly>
                         </div>
                         <div class="info-item">
                             <div class="info-label">Phone Number</div>
@@ -139,14 +131,12 @@
                         </div>
                     </div>
                     
-                    <!-- Action buttons (hidden by default) -->
                     <div class="action-buttons" id="actionButtons" style="display: none;">
                         <button class="save-btn" id="saveProfileBtn">Save Changes</button>
                         <button class="cancel-btn" id="cancelEditBtn">Cancel</button>
                     </div>
                 </div>
                 
-                <!-- My Listings Section -->
                 <div class="info-section">
                     <h2 class="section-title"><i class="fas fa-list"></i> My Recent Listings</h2>
                     <div class="listings-grid">
@@ -209,7 +199,6 @@
                     </div>
                 </div>
                 
-                <!-- My Orders Section -->
                 <div class="info-section">
                     <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Recent Orders</h2>
                     <div class="listings-grid">
@@ -262,7 +251,6 @@
         </div>
     </div>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -277,7 +265,6 @@
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Categories</a></li>
-                        
                     </ul>
                 </div>
                 
@@ -297,8 +284,6 @@
         </div>
     </footer>
 
-    <script src="profiledashboard.js">
-        
-    </script>
+    <script src="profiledashboard.js"></script>
 </body>
 </html>
