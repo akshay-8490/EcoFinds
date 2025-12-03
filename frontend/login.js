@@ -70,7 +70,7 @@ function showError(message) {
     `;
     const existingError = document.querySelector('.error-message');
     if (existingError) existingError.remove();
-    document.querySelector('.points-section').before(errorDiv);
+    document.querySelector('#message-area').before(errorDiv);
     setTimeout(() => errorDiv.remove(), 5000);
 }
 
@@ -86,6 +86,6 @@ function showSuccess(message) {
     if (existingError) existingError.remove();
     const existingSuccess = document.querySelector('.success-message');
     if (existingSuccess) existingSuccess.remove();
-    document.querySelector('.points-section').before(successDiv);
+    document.querySelector('#message-area').before(successDiv);
     setTimeout(() => successDiv.remove(), 5000);
 }
